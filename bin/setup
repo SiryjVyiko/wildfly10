@@ -11,6 +11,9 @@ service iptables save
 
 [ -f ${OPENSHIFT_WILDFLY10_DIR}/versions/${Version}/.jboss-cli-history ] || touch ${OPENSHIFT_WILDFLY10_DIR}/versions/${Version}/.jboss-cli-history
 
+NODE_IDENTIFIER=`< /dev/urandom tr -dc a-z0-9 | head -c16`;
+sed -i "s/core-environment node-identifier=\".*\"/core-environment node-identifier=\"$NODE_IDENTIFIER\"/" ${OPENSHIFT_WILDFLY10_DIR}/versions/${Version}/standalone/configuration/standalone.xml;
+
 if [ ! -e ${OPENSHIFT_WILDFLY10_DIR}/versions/${Version}/standalone/configuration/server.keystore ]
 then
 cd /usr/java/latest/bin;
