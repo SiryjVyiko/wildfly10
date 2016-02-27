@@ -26,7 +26,7 @@ then
             if `echo $i | $GREP -qiE '\-Xmn[[:digit:]]{1,}[mgkMGK]$'`; then XMN="${i:4}"; continue; fi
             if `echo $i | $GREP -qie '\-XX:+Use[[:alnum:]]\{1,\}GC$'`; then GC=$GC" $i"; continue; fi
 
-            confresult=$(echo $confresult " $i" | sed -e 's/&/\\&/g' -e 's/;/\\;/g' -e "s/?/\\?/g" -e "s/*/\\*/g" -e "s/(/\\(/g" -e "s/)/\\)/g"
+            confresult=$(echo $confresult " $i" | sed -e 's/&/\\&/g' -e 's/;/\\;/g' -e "s/?/\\?/g" -e "s/*/\\*/g" -e "s/(/\\(/g" -e "s/)/\\)/g")
         done
 fi
 if `echo $confresult | grep -q ${JELASTIC_GC_AGENT}`;
