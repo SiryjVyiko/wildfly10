@@ -13,7 +13,7 @@ function _deploy(){
      local download_dir=$(mktemp -d)
      $WGET --no-check-certificate --content-disposition -P "$download_dir" "$package_url";
      local app_filename=$(ls "download_dir")
-     [[ "$app_filename" =~ (.*.ear) ]] && mv -f "/${download_dir}/${app_filename}" "${WEBROOT}/${context}.ear" || "/${download_dir}/${app_filename}" "${WEBROOT}/${context}.war"
+     [[ "$app_filename" =~ (.*.ear) ]] && mv -f "/${download_dir}/${app_filename}" "${WEBROOT}/${context}.ear" || mv -f "/${download_dir}/${app_filename}" "${WEBROOT}/${context}.war"
      rm -rf "$download_dir"
 }
 
